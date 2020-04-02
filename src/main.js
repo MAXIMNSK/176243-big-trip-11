@@ -96,48 +96,67 @@ const getSortForm = () => {
 };
 
 /**
- * Функция возвращает список в виде строки
+ * Функция возвращает список событий дня в виде строки
  * @return {string} возвращает блок разметки
  */
-const getTripContent = () => {
+const getListDays = () => {
   return (`
-  <ul class="trip-days">
-    <li class="trip-days__item  day">
-      <div class="day__info"></div>
-      <ul class="trip-events__list">
-        <li class="trip-events__item">
-          <div class="event">
-            <div class="event__type">
-              <img class="event__type-icon" width="42" height="42" src="img/icons/drive.png" alt="Event type icon">
-            </div>
-            <h3 class="event__title">Drive to Chamonix</h3>
-            <div class="event__schedule">
-              <p class="event__time">
-                <time class="event__start-time" datetime="2019-03-18T14:30">14:30</time>
-                &mdash;
-                <time class="event__end-time" datetime="2019-03-18T16:05">16:05</time>
-              </p>
-              <p class="event__duration">1H 35M</p>
-            </div>
-            <p class="event__price">
-              &euro;&nbsp;<span class="event__price-value">160</span>
-            </p>
-            <h4 class="visually-hidden">Offers:</h4>
-            <ul class="event__selected-offers">
-              <li class="event__offer">
-                <span class="event__offer-title">Rent a car</span>
-                &plus;
-                &euro;&nbsp;<span class="event__offer-price">200</span>
-              </li>
-            </ul>
-            <button class="event__rollup-btn" type="button">
-              <span class="visually-hidden">Open event</span>
-            </button>
-          </div>
-        </li>
-      </ul>
+    <ul class="trip-days">
+      <li class="trip-days__item  day">
+        <div class="day__info">${getDate()}</div>
+        <ul class="trip-events__list"></ul>
+      </li>
+    </ul>
+  `);
+};
+
+/**
+ * Функция возвращает одно событие дня в виде строки
+ * @return {string} возвращает блок разметки
+ */
+const getDay = () => {
+  return (`
+    <li class="trip-events__item">
+      <div class="event">
+        <div class="event__type">
+          <img class="event__type-icon" width="42" height="42" src="img/icons/drive.png" alt="Event type icon">
+        </div>
+        <h3 class="event__title">Drive to Chamonix</h3>
+        <div class="event__schedule">
+          <p class="event__time">
+            <time class="event__start-time" datetime="2019-03-18T14:30">14:30</time>
+            &mdash;
+            <time class="event__end-time" datetime="2019-03-18T16:05">16:05</time>
+          </p>
+          <p class="event__duration">1H 35M</p>
+        </div>
+        <p class="event__price">
+          &euro;&nbsp;<span class="event__price-value">160</span>
+        </p>
+        <h4 class="visually-hidden">Offers:</h4>
+        <ul class="event__selected-offers">
+          <li class="event__offer">
+            <span class="event__offer-title">Rent a car</span>
+            &plus;
+            &euro;&nbsp;<span class="event__offer-price">200</span>
+          </li>
+        </ul>
+        <button class="event__rollup-btn" type="button">
+          <span class="visually-hidden">Open event</span>
+        </button>
+      </div>
     </li>
-  </ul>
+  `);
+};
+
+/**
+ * Функция возвращает информацию о дне
+ * @return {string} возвращает блок разметки
+ */
+const getDate = () => {
+  return (`
+    <span class="day__counter">1</span>
+    <time class="day__date" datetime="2019-03-18">MAR 18</time>
   `);
 };
 
@@ -155,9 +174,9 @@ const render = (container, template, place = `beforeend`) => container.insertAdj
  * @param {*} container элемент в который мы рендерим возвращаемое функцией значение
  * @param {number} count передаём количество экспортируемых элементов
  */
-const renderContent = (container, count) => {
+const createEvents = (container, count) => {
   for (let i = 0; i < count; i++) {
-    render(container, getTripContent());
+    render(container, getDay());
   }
 };
 
@@ -169,7 +188,10 @@ const init = () => {
   render(tripControlsFirst, getTripMenu(), `afterend`);
   render(tripControls, getTripFilters());
   render(tripEvents, getSortForm());
-  renderContent(tripEvents, TRIP_POINT_COUNT);
+  render(tripEvents, getListDays());
+
+  const listDays = document.querySelector(`.trip-events__list`);
+  createEvents(listDays, TRIP_POINT_COUNT);
 };
 
 init();
