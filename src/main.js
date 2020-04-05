@@ -9,15 +9,15 @@ import {TRIP_POINT_COUNT, INSERT} from "./consts/constants";
 import {render} from "./utility/render";
 import {createEvents} from "./utility/createEvent";
 
+const tripBlock = document.querySelector(`.trip-main`);
+const tripEvents = document.querySelector(`.trip-events`);
+const tripControls = document.querySelector(`.trip-main__trip-controls`);
+const tripControlsFirst = tripControls.children[0];
+
 /**
  * Функция инициализирует блоки в разметку
  */
 const init = () => {
-  const tripBlock = document.querySelector(`.trip-main`);
-  const tripEvents = document.querySelector(`.trip-events`);
-  const tripControls = document.querySelector(`.trip-main__trip-controls`);
-  const tripControlsFirst = tripControls.children[0];
-
   render(tripBlock, getTripInfo(), INSERT.afterbegin);
   render(tripControlsFirst, getTripMenu(), INSERT.afterend);
   render(tripControls, getTripFilters());
