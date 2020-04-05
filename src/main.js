@@ -1,13 +1,13 @@
 import {getTripInfo} from "./components/info";
 import {getTripMenu} from "./components/menu";
 import {getTripFilters} from "./components/filter";
-import {getSortForm} from "./components/formSort";
-import {getListDays} from "./components/listDays";
+import {getSortForm} from "./components/formsort";
+import {getListDays} from "./components/listdays";
 
 import {TRIP_POINT_COUNT, INSERT} from "./consts/constants";
 
 import {render} from "./utility/render";
-import {createEvents} from "./utility/createEvent";
+import {createEvents} from "./utility/createevent";
 
 const tripBlock = document.querySelector(`.trip-main`);
 const tripEvents = document.querySelector(`.trip-events`);

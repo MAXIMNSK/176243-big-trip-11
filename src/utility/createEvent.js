@@ -1,4 +1,4 @@
-import {render} from "../utility/render";
+import {render} from "./render";
 import {getDay} from "../components/day";
 
 /**
