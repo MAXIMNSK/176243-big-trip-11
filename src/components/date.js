@@ -1,7 +1,3 @@
-/**
- * Функция возвращает информацию о дне
- * @return {string} возвращает блок разметки
- */
 export const getDate = () => {
   return (`
     <span class="day__counter">1</span>

@@ -1,7 +1,3 @@
-/**
- * Функция возвращает форму в виде строки
- * @return {string} возвращает блок разметки
- */
 export const getTripFilters = () => {
   return (`
   <form class="trip-filters" action="#" method="get">

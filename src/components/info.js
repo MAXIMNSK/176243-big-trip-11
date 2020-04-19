@@ -1,7 +1,3 @@
-/**
- * Функция возвращает секцию вёрстки в виде строки
- * @return {string} возвращает блок разметки
- */
 export const getTripInfo = () => {
   return (`
   <section class="trip-main__trip-info  trip-info">
