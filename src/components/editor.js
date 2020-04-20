@@ -1,20 +1,20 @@
-import {MONTHS} from "../consts/constants";
-
 export const getEditor = (waypoint) => {
-  const {dateFrom, dateTo, price, offer} = waypoint;
+  const {
+    startShortYear,
+    startMonthNumber,
+    startDay,
+    startHour,
+    startMin,
+    endShortYear,
+    endMonthNumber,
+    endDay,
+    endHour,
+    endMin,
+    price,
+    offer,
+  } = waypoint;
 
-  const yearFrom = dateFrom.year.toString().slice(2);
-  const yearTo = dateTo.year.toString().slice(2);
-
-  let monthFrom = MONTHS.map((element, index) => element === dateFrom.month ? ++index : ``).join(``);
-  if (monthFrom < 10) {
-    monthFrom = `0` + monthFrom;
-  }
-
-  let monthTo = MONTHS.map((element, index) => element === dateTo.month ? ++index : ``).join(``);
-  if (monthTo < 10) {
-    monthTo = `0` + monthTo;
-  }
+  const {luggagePrice, comfortPrice, mealPrice, seatsPrice, trainPrice} = offer;
 
   return (`
     <li class="trip-events__item">
@@ -104,12 +104,12 @@ export const getEditor = (waypoint) => {
             <label class="visually-hidden" for="event-start-time-1">
               From
             </label>
-            <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${dateFrom.day}/${monthFrom}/${yearFrom} ${dateFrom.hour}:${dateFrom.min}">
+            <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${startDay}/${startMonthNumber}/${startShortYear} ${startHour}:${startMin}">
             &mdash;
             <label class="visually-hidden" for="event-end-time-1">
               To
             </label>
-            <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${dateTo.day}/${monthTo}/${yearTo} ${dateTo.hour}:${dateTo.min}">
+            <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${endDay}/${endMonthNumber}/${endShortYear} ${endHour}:${endMin}">
           </div>
 
           <div class="event__field-group  event__field-group--price">
@@ -146,7 +146,7 @@ export const getEditor = (waypoint) => {
                 <label class="event__offer-label" for="event-offer-luggage-1">
                   <span class="event__offer-title">Add luggage</span>
                   &plus;
-                  &euro;&nbsp;<span class="event__offer-price">${offer.luggage}</span>
+                  &euro;&nbsp;<span class="event__offer-price">${luggagePrice}</span>
                 </label>
               </div>
 
@@ -155,7 +155,7 @@ export const getEditor = (waypoint) => {
                 <label class="event__offer-label" for="event-offer-comfort-1">
                   <span class="event__offer-title">Switch to comfort class</span>
                   &plus;
-                  &euro;&nbsp;<span class="event__offer-price">${offer.comfort}</span>
+                  &euro;&nbsp;<span class="event__offer-price">${comfortPrice}</span>
                 </label>
               </div>
 
@@ -164,7 +164,7 @@ export const getEditor = (waypoint) => {
                 <label class="event__offer-label" for="event-offer-meal-1">
                   <span class="event__offer-title">Add meal</span>
                   &plus;
-                  &euro;&nbsp;<span class="event__offer-price">${offer.meal}</span>
+                  &euro;&nbsp;<span class="event__offer-price">${mealPrice}</span>
                 </label>
               </div>
 
@@ -173,7 +173,7 @@ export const getEditor = (waypoint) => {
                 <label class="event__offer-label" for="event-offer-seats-1">
                   <span class="event__offer-title">Choose seats</span>
                   &plus;
-                  &euro;&nbsp;<span class="event__offer-price">${offer.seats}</span>
+                  &euro;&nbsp;<span class="event__offer-price">${seatsPrice}</span>
                 </label>
               </div>
 
@@ -182,7 +182,7 @@ export const getEditor = (waypoint) => {
                 <label class="event__offer-label" for="event-offer-train-1">
                   <span class="event__offer-title">Travel by train</span>
                   &plus;
-                  &euro;&nbsp;<span class="event__offer-price">${offer.train}</span>
+                  &euro;&nbsp;<span class="event__offer-price">${trainPrice}</span>
                 </label>
               </div>
             </div>

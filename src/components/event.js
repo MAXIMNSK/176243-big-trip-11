@@ -1,21 +1,24 @@
 export const getDay = (waypoint) => {
-  const {type, destination, photo, dateFrom, dateTo, price, rent, duration} = waypoint;
+  const {
+    type,
+    destination,
+    photo,
+    startFullYear,
+    startMonthName,
+    startDay,
+    startHour,
+    startMin,
+    endFullYear,
+    endMonthName,
+    endDay,
+    endHour,
+    endMin,
+    price,
+    rent,
+    duration,
+  } = waypoint;
 
-  const durationMin = duration.min < 10 ? `0` + duration.min + `M` : duration.min + `M`;
-  let durationHour = ``;
-  let durationDay = ``;
-
-  if (duration.hour === 0 && duration.day !== 0) {
-    durationHour = duration.hour < 10 ? `0` + duration.hour + `H` : duration.hour + `H`;
-  } else if (duration.hour !== 0 && duration.day !== 0) {
-    durationHour = duration.hour < 10 ? `0` + duration.hour + `H` : duration.hour + `H`;
-  } else if (duration.hour !== 0 && duration.day === 0) {
-    durationHour = duration.hour < 10 ? `0` + duration.hour + `H` : duration.hour + `H`;
-  }
-
-  if (duration.day !== 0) {
-    durationDay = duration.day < 10 ? `0` + duration.day + `D` : duration.day + `D`;
-  }
+  const {min, hour, day} = duration;
 
   return (`
     <li class="trip-events__item">
@@ -26,11 +29,11 @@ export const getDay = (waypoint) => {
         <h3 class="event__title">${type} to ${destination}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="${dateFrom.year}-${dateFrom.month}-${dateFrom.day}T${dateFrom.hour}:${dateFrom.min}">${dateFrom.hour}:${dateFrom.min}</time>
+            <time class="event__start-time" datetime="${startFullYear}-${startMonthName}-${startDay}T${startHour}:${startMin}">${startHour}:${startMin}</time>
             &mdash;
-            <time class="event__end-time" datetime="${dateTo.year}-${dateTo.month}-${dateTo.day}T${dateTo.hour}:${dateTo.min}">${dateTo.hour}:${dateTo.min}</time>
+            <time class="event__end-time" datetime="${endFullYear}-${endMonthName}-${endDay}T${endHour}:${endMin}">${endHour}:${endMin}</time>
           </p>
-          <p class="event__duration">${durationDay} ${durationHour} ${durationMin}</p>
+          <p class="event__duration">${+day !== 0 ? day + `D` : ``} ${+hour === 0 && +day !== 0 || +hour !== 0 && +day !== 0 || +hour !== 0 ? hour + `H` : ``} ${min + `M`}</p>
         </div>
         <p class="event__price">
           &euro;&nbsp;<span class="event__price-value">${price}</span>

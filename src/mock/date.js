@@ -6,8 +6,10 @@ const getRandomDate = () => {
   const random = new Date(getRandomNumber(date.getTime()));
 
   return ({
-    year: random.getFullYear(),
-    month: MONTHS[random.getMonth()],
+    fullYear: random.getFullYear(),
+    shortYear: random.getFullYear().toString().slice(2),
+    monthName: MONTHS[random.getMonth()],
+    monthNumber: random.getMonth() < 10 ? `0` + random.getMonth() : random.getMonth(),
     day: random.getDate() < 10 ? `0` + random.getDate() : random.getDate(),
     hour: random.getHours() < 10 ? `0` + random.getHours() : random.getHours(),
     min: random.getMinutes() < 10 ? `0` + random.getMinutes() : random.getMinutes(),
@@ -15,4 +17,13 @@ const getRandomDate = () => {
   });
 };
 
-export {getRandomDate};
+let randomStartDate = getRandomDate();
+let randomEndDate = getRandomDate();
+
+if (randomStartDate.time > randomEndDate.time) {
+  let temp = randomStartDate;
+  randomStartDate = randomEndDate;
+  randomEndDate = temp;
+}
+
+export {randomStartDate, randomEndDate};

@@ -29,7 +29,7 @@ const MONTHS = [
 ];
 
 const MIN_IN_HOUR = 60;
-const HOUR_IN_DAY = 24;
+const HOURS_IN_DAY = 24;
 const DAYS_COUNT = 5;
 const MIN_COUNT_MINUTE = 1;
 
@@ -41,7 +41,7 @@ export {
   MAX_PRICE,
   RENT_PRICE,
   MIN_IN_HOUR,
-  HOUR_IN_DAY,
+  HOURS_IN_DAY,
   DAYS_COUNT,
   MIN_COUNT_MINUTE,
   OFFER_PRICE,
