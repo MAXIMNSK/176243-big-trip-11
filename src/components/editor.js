@@ -2,6 +2,7 @@ import {getTransferTypes} from "./editor/type_transfer";
 import {getActivityTypes} from "./editor/type_activity";
 import {getDestinationPoints} from "./editor/destination";
 import {getOffers} from "./editor/offers";
+import {getFormedDate, getFormedTime} from "./editor/formed_data";
 
 export const getEditor = (waypoint) => {
   const {
@@ -56,12 +57,12 @@ export const getEditor = (waypoint) => {
             <label class="visually-hidden" for="event-start-time-1">
               From
             </label>
-            <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${startDay}/${startMonthNumber}/${startShortYear} ${startHour}:${startMin}">
+            <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${getFormedDate(startDay, startMonthNumber, startShortYear)} ${getFormedTime(startHour, startMin)}">
             &mdash;
             <label class="visually-hidden" for="event-end-time-1">
               To
             </label>
-            <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${endDay}/${endMonthNumber}/${endShortYear} ${endHour}:${endMin}">
+            <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${getFormedDate(endDay, endMonthNumber, endShortYear)} ${getFormedTime(endHour, endMin)}">
           </div>
 
           <div class="event__field-group  event__field-group--price">
