@@ -1,17 +1,17 @@
-import {getRandomType} from "./type";
-import {getRandomDest} from "./destination";
+import {getWaypointType} from "./type_waypoint";
+import {getRandomDest} from "./destination_generator";
 import {getInfo} from "./info";
 import {randomStartDate, randomEndDate} from "./date";
 import {MAX_PRICE, RENT_PRICE} from "../consts/constants";
 import {getDurationTime} from "./duration";
-import {getOffer} from "./offer";
+import {getPhoto} from "./photo_generator";
 
 const getWaypoint = () => {
   return {
-    type: getRandomType(),
+    type: getWaypointType(),
     destination: getRandomDest(),
     info: getInfo(),
-    photo: `http://picsum.photos/248/152?r=${Math.random()}`,
+    photo: getPhoto(),
     startFullYear: randomStartDate.fullYear,
     startShortYear: randomStartDate.shortYear,
     startMonthName: randomStartDate.monthName,
@@ -29,7 +29,6 @@ const getWaypoint = () => {
     price: Math.floor(Math.random() * MAX_PRICE),
     rent: Math.floor(Math.random() * RENT_PRICE),
     duration: getDurationTime(),
-    offer: getOffer(),
   };
 };
 

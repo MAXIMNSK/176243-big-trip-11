@@ -7,7 +7,7 @@ import {getListDays} from "./components/list";
 import {TRIP_POINT_COUNT, Position, COUNT_WAYPOINTS, EDITOR_COUNT} from "./consts/constants";
 
 import {render} from "./utility/render";
-import {createEvents, createEditor} from "./utility/eventcreator";
+import {createEvents, createEditor} from "./utility/event_creator";
 
 import {getWaypointsSet} from "./mock/mock";
 

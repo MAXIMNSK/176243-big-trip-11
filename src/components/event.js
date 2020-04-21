@@ -1,3 +1,5 @@
+import {getFormedDuration, getFormedDate, getFormedTime} from "./event/formed_data";
+
 export const getDay = (waypoint) => {
   const {
     type,
@@ -29,11 +31,11 @@ export const getDay = (waypoint) => {
         <h3 class="event__title">${type} to ${destination}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="${startFullYear}-${startMonthName}-${startDay}T${startHour}:${startMin}">${startHour}:${startMin}</time>
+            <time class="event__start-time" datetime="${getFormedDate(startFullYear, startMonthName, startDay)}T${getFormedTime(startHour, startMin)}">${getFormedTime(startHour, startMin)}</time>
             &mdash;
-            <time class="event__end-time" datetime="${endFullYear}-${endMonthName}-${endDay}T${endHour}:${endMin}">${endHour}:${endMin}</time>
+            <time class="event__end-time" datetime="${getFormedDate(endFullYear, endMonthName, endDay)}T${getFormedTime(endHour, endMin)}">${getFormedTime(endHour, endMin)}</time>
           </p>
-          <p class="event__duration">${+day !== 0 ? day + `D` : ``} ${+hour === 0 && +day !== 0 || +hour !== 0 && +day !== 0 || +hour !== 0 ? hour + `H` : ``} ${min + `M`}</p>
+          <p class="event__duration">${getFormedDuration(day, hour, min)}</p>
         </div>
         <p class="event__price">
           &euro;&nbsp;<span class="event__price-value">${price}</span>

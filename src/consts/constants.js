@@ -1,10 +1,9 @@
-const TRIP_POINT_COUNT = 3;
+const TRIP_POINT_COUNT = 13;
 const EDITOR_COUNT = 1;
 const COUNT_WAYPOINTS = 20;
 
 const MAX_PRICE = 1000;
 const RENT_PRICE = 500;
-const OFFER_PRICE = 500;
 
 const Position = {
   beforebegin: `beforebegin`,
@@ -44,6 +43,5 @@ export {
   HOURS_IN_DAY,
   DAYS_COUNT,
   MIN_COUNT_MINUTE,
-  OFFER_PRICE,
   EDITOR_COUNT,
 };
