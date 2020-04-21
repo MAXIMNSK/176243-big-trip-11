@@ -1,7 +1,3 @@
-/**
- * Функция возвращает форму в виде строки
- * @return {string} возвращает блок разметки
- */
 export const getSortForm = () => {
   return (`
     <form class="trip-events__trip-sort  trip-sort" action="#" method="get">

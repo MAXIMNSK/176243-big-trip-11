@@ -1,7 +1,3 @@
-/**
- * Функция возвращает секцию вёрстки в виде строки
- * @return {string} возвращает блок разметки
- */
 export const getTripMenu = () => {
   return (`
   <nav class="trip-controls__trip-tabs  trip-tabs">

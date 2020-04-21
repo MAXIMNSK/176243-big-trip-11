@@ -1,9 +1,5 @@
 import {getDate} from "./date";
 
-/**
- * Функция возвращает список событий дня в виде строки
- * @return {string} возвращает блок разметки
- */
 export const getListDays = () => {
   return (`
     <ul class="trip-days">
