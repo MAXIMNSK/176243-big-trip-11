@@ -1,4 +1,5 @@
 import {getFormedDuration, getFormedDate, getFormedTime} from "./event/formed_data";
+import {transform} from "../utility/transformation";
 
 export const getDay = (waypoint) => {
   const {
@@ -22,8 +23,8 @@ export const getDay = (waypoint) => {
 
   const {min, hour, day} = duration;
 
-  return (`
-    <li class="trip-events__item">
+  return (
+    `<li class="trip-events__item">
       <div class="event">
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="${photo}" alt="Event type icon">
@@ -52,6 +53,29 @@ export const getDay = (waypoint) => {
           <span class="visually-hidden">Open event</span>
         </button>
       </div>
-    </li>
-  `);
+    </li>`
+  );
 };
+
+export default class Event {
+  constructor(data) {
+    this._markupElement = null;
+    this._data = data;
+  }
+
+  getTemplate() {
+    return getDay(this._data);
+  }
+
+  getElement() {
+    if (this._markupElement !== true) {
+      this._markupElement = transform(this.getTemplate());
+    }
+
+    return this._markupElement;
+  }
+
+  resetVariable() {
+    this._markupElement = null;
+  }
+}

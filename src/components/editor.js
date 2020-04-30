@@ -3,6 +3,7 @@ import {getActivityTypes} from "./editor/type_activity";
 import {getDestinationPoints} from "./editor/destination";
 import {getOffers} from "./editor/offers";
 import {getFormedDate, getFormedTime} from "./editor/formed_data";
+import {transform} from "../utility/transformation";
 
 export const getEditor = (waypoint) => {
   const {
@@ -19,8 +20,8 @@ export const getEditor = (waypoint) => {
     price,
   } = waypoint;
 
-  return (`
-    <li class="trip-events__item">
+  return (
+    `<li class="trip-events__item">
       <form class="event  event--edit" action="#" method="post">
         <header class="event__header">
           <div class="event__type-wrapper">
@@ -99,6 +100,29 @@ export const getEditor = (waypoint) => {
           </section>
         </section>
       </form>
-    </li>
-  `);
+    </li>`
+  );
 };
+
+export default class EditorEvent {
+  constructor(data) {
+    this._markupElement = null;
+    this._data = data;
+  }
+
+  getTemplate() {
+    return getEditor(this._data);
+  }
+
+  getElement() {
+    if (this._markupElement !== true) {
+      this._markupElement = transform(this.getTemplate());
+    }
+
+    return this._markupElement;
+  }
+
+  resetVariable() {
+    this._markupElement = null;
+  }
+}

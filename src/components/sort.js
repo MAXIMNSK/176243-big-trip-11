@@ -1,6 +1,8 @@
-export const getSortForm = () => {
-  return (`
-    <form class="trip-events__trip-sort  trip-sort" action="#" method="get">
+import {transform} from "../utility/transformation";
+
+const getSortForm = () => {
+  return (
+    `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
       <span class="trip-sort__item  trip-sort__item--day">Day</span>
       <div class="trip-sort__item  trip-sort__item--event">
         <input id="sort-event" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-event" checked>
@@ -23,6 +25,28 @@ export const getSortForm = () => {
         </label>
       </div>
       <span class="trip-sort__item  trip-sort__item--offers">Offers</span>
-  </form>
-  `);
+    </form>`
+  );
 };
+
+export default class Sort {
+  constructor() {
+    this._markupElement = null;
+  }
+
+  getTemplate() {
+    return getSortForm();
+  }
+
+  getElement() {
+    if (this._markupElement !== true) {
+      this._markupElement = transform(this.getTemplate());
+    }
+
+    return this._markupElement;
+  }
+
+  resetVariable() {
+    this._markupElement = null;
+  }
+}

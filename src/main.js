@@ -1,13 +1,13 @@
-import {getTripInfo} from "./components/info";
-import {getTripMenu} from "./components/menu";
-import {getTripFilters} from "./components/filter";
-import {getSortForm} from "./components/sort";
-import {getListDays} from "./components/list";
+import InfoComponent from "./components/info";
+import MenuComponent from "./components/menu";
+import FilterComponent from "./components/filter";
+import SortComponent from "./components/sort";
+import ListDaysComponent from "./components/list";
 
-import {TRIP_POINT_COUNT, Position, COUNT_WAYPOINTS, EDITOR_COUNT} from "./consts/constants";
+import {Position, COUNT_WAYPOINTS} from "./consts/constants";
 
 import {render} from "./utility/render";
-import {createEvents, createEditor} from "./utility/event_creator";
+import {createEvents} from "./utility/event_creator";
 
 import {getWaypointsSet} from "./mock/mock";
 
@@ -19,15 +19,14 @@ const tripControls = document.querySelector(`.trip-main__trip-controls`);
 const tripControlsFirst = tripControls.children[0];
 
 const init = () => {
-  render(tripBlock, getTripInfo(), Position.afterbegin);
-  render(tripControlsFirst, getTripMenu(), Position.afterend);
-  render(tripControls, getTripFilters());
-  render(tripEvents, getSortForm());
-  render(tripEvents, getListDays());
+  render(tripBlock, new InfoComponent().getElement(), Position.afterbegin);
+  render(tripControlsFirst, new MenuComponent().getElement(), Position.afterend);
+  render(tripControls, new FilterComponent().getElement());
+  render(tripEvents, new SortComponent().getElement());
+  render(tripEvents, new ListDaysComponent().getElement());
 
   const listEvents = document.querySelector(`.trip-events__list`);
-  createEditor(listEvents, EDITOR_COUNT, waypointsSet[0]);
-  createEvents(listEvents, TRIP_POINT_COUNT, waypointsSet);
+  createEvents(listEvents, waypointsSet);
 };
 
 init();
