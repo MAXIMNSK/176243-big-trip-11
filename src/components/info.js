@@ -1,4 +1,4 @@
-import {transform} from "../utility/transformation";
+import AbstractComponent from "./abstraction";
 
 const getTripInfo = () => {
   return (
@@ -14,24 +14,8 @@ const getTripInfo = () => {
   );
 };
 
-export default class Info {
-  constructor() {
-    this._markupElement = null;
-  }
-
+export default class Info extends AbstractComponent {
   getTemplate() {
     return getTripInfo();
-  }
-
-  getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
-    }
-
-    return this._markupElement;
-  }
-
-  resetVariable() {
-    this._markupElement = null;
   }
 }

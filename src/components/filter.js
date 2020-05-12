@@ -1,4 +1,4 @@
-import {transform} from "../utility/transformation";
+import AbstractComponent from "./abstraction";
 
 const getTripFilters = () => {
   return (
@@ -20,24 +20,8 @@ const getTripFilters = () => {
   );
 };
 
-export default class Filter {
-  constructor() {
-    this._markupElement = null;
-  }
-
+export default class Filter extends AbstractComponent {
   getTemplate() {
     return getTripFilters();
-  }
-
-  getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
-    }
-
-    return this._markupElement;
-  }
-
-  resetVariable() {
-    this._markupElement = null;
   }
 }

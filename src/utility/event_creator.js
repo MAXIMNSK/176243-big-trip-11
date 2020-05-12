@@ -1,34 +1,37 @@
-import {render} from "./render";
-import EditorEventComponent from "../components/editor";
-import EventComponent from "../components/event";
+// import {render, renderEvent} from "./render";
+// import EditorEventComponent from "../components/editor";
+// import EventComponent from "../components/event";
+// import {replace} from "./replace";
 
-function hideBtnHundler(place, instanceEvent, hideBtn, instanceEditor) {
-  hideBtn.addEventListener(`click`, function () {
-    place.replaceChild(instanceEvent, instanceEditor);
-  });
-}
+// function showBtnHundler(place, showBtn, instanceEvent, instanceEditor) {
+//   showBtn.addEventListener(`click`, function () {
+//     replace(place, instanceEditor, instanceEvent);
+//   });
+// }
 
-function showBtnHundler(place, instanceEvent, showBtn, instanceEditor) {
-  showBtn.addEventListener(`click`, function () {
-    place.replaceChild(instanceEditor, instanceEvent);
-  });
-}
+// function hideBtnHundler(place, hideBtn, instanceEvent, instanceEditor) {
+//   hideBtn.addEventListener(`click`, function () {
+//     replace(place, instanceEvent, instanceEditor);
+//   });
+// }
 
-const buildEvent = (place, element) => {
-  const instanceEvent = new EventComponent(element).getElement();
-  const showBtn = instanceEvent.querySelector(`.event__rollup-btn`);
+// const buildEvent = (place, tripEvent) => {
+//   const eventComponent = new EventComponent(tripEvent);
+//   const instanceEvent = eventComponent.getElement();
+//   const showBtn = instanceEvent.querySelector(`.event__rollup-btn`);
 
-  const instanceEditor = new EditorEventComponent(element).getElement();
-  const hideBtn = instanceEditor.querySelector(`.event__rollup-btn`);
+//   const editorComponent = new EditorEventComponent(tripEvent);
+//   const instanceEditor = editorComponent.getElement();
+//   const hideBtn = instanceEditor.querySelector(`.event__rollup-btn`);
 
-  showBtnHundler(place, instanceEvent, showBtn, instanceEditor);
-  hideBtnHundler(place, instanceEvent, hideBtn, instanceEditor);
+//   showBtnHundler(place, showBtn, instanceEvent, instanceEditor);
+//   hideBtnHundler(place, hideBtn, instanceEvent, instanceEditor);
 
-  render(place, instanceEvent);
-};
+//   render(place, eventComponent);
+// };
 
-const createEvents = (place, eventSet) => {
-  eventSet.forEach((element) => buildEvent(place, element));
-};
+// const createEvents = (place, eventSet) => {
+//   eventSet.forEach((tripEvent) => buildEvent(place, tripEvent));
+// };
 
-export {createEvents};
+// export {createEvents};

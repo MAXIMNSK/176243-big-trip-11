@@ -1,18 +1,20 @@
 import {Position} from "../consts/constants";
 
-export const render = (container, element, place = Position.beforeend) => {
+const render = (container, component, place = Position.beforeend) => {
   switch (place) {
     case Position.beforebegin:
-      container.before(element);
+      container.before(component.getElement());
       break;
     case Position.afterbegin:
-      container.prepend(element);
+      container.prepend(component.getElement());
       break;
     case Position.beforeend:
-      container.append(element);
+      container.append(component.getElement());
       break;
     case Position.afterend:
-      container.after(element);
+      container.after(component.getElement());
       break;
   }
 };
+
+export {render};

@@ -1,4 +1,4 @@
-import {transform} from "../utility/transformation";
+import AbstractComponent from "./abstraction";
 
 const getTripMenu = () => {
   return (
@@ -9,24 +9,8 @@ const getTripMenu = () => {
   );
 };
 
-export default class Menu {
-  constructor() {
-    this._markupElement = null;
-  }
-
+export default class Menu extends AbstractComponent {
   getTemplate() {
     return getTripMenu();
-  }
-
-  getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
-    }
-
-    return this._markupElement;
-  }
-
-  resetVariable() {
-    this._markupElement = null;
   }
 }

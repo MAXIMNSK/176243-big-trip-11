@@ -1,6 +1,6 @@
 const TRIP_POINT_COUNT = 10;
 const EDITOR_COUNT = 1;
-const COUNT_WAYPOINTS = 20;
+const COUNT_WAYPOINTS = 2;
 
 const MAX_PRICE = 1000;
 const RENT_PRICE = 500;

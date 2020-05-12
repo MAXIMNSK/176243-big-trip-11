@@ -1,4 +1,4 @@
-import {transform} from "../utility/transformation";
+import AbstractComponent from "./abstraction";
 
 const getSortForm = () => {
   return (
@@ -29,24 +29,8 @@ const getSortForm = () => {
   );
 };
 
-export default class Sort {
-  constructor() {
-    this._markupElement = null;
-  }
-
+export default class Sort extends AbstractComponent {
   getTemplate() {
     return getSortForm();
-  }
-
-  getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
-    }
-
-    return this._markupElement;
-  }
-
-  resetVariable() {
-    this._markupElement = null;
   }
 }
