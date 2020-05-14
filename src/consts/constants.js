@@ -1,9 +1,9 @@
 const TRIP_POINT_COUNT = 10;
 const EDITOR_COUNT = 1;
-const COUNT_WAYPOINTS = 2;
+const COUNT_WAYPOINTS = 7;
+const COUNT_DAYS = 7;
 
-const MAX_PRICE = 1000;
-const RENT_PRICE = 500;
+const UNIVERSAL_NUMBER = 1500;
 
 const Position = {
   beforebegin: `beforebegin`,
@@ -34,11 +34,11 @@ const MIN_COUNT_MINUTE = 1;
 
 export {
   TRIP_POINT_COUNT,
+  COUNT_DAYS,
   Position,
   COUNT_WAYPOINTS,
   MONTHS,
-  MAX_PRICE,
-  RENT_PRICE,
+  UNIVERSAL_NUMBER,
   MIN_IN_HOUR,
   HOURS_IN_DAY,
   DAYS_COUNT,

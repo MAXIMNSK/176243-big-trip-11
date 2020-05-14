@@ -104,7 +104,7 @@ export const getEditor = (waypoint) => {
   );
 };
 
-export default class EditorEvent extends AbstractComponent {
+export default class EventEditorComponent extends AbstractComponent {
   constructor(data) {
     super();
     this._data = data;

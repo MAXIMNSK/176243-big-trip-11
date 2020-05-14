@@ -14,7 +14,7 @@ const getTripInfo = () => {
   );
 };
 
-export default class Info extends AbstractComponent {
+export default class InfoBlockComponent extends AbstractComponent {
   getTemplate() {
     return getTripInfo();
   }

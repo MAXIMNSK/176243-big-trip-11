@@ -9,7 +9,7 @@ const getTripMenu = () => {
   );
 };
 
-export default class Menu extends AbstractComponent {
+export default class MenuComponent extends AbstractComponent {
   getTemplate() {
     return getTripMenu();
   }

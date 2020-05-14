@@ -29,7 +29,7 @@ const getSortForm = () => {
   );
 };
 
-export default class Sort extends AbstractComponent {
+export default class SortComponent extends AbstractComponent {
   getTemplate() {
     return getSortForm();
   }

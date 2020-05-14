@@ -1,12 +1,10 @@
 import {render} from "../utility/render";
 import {replace} from "../utility/replace";
-import {Position} from "../consts/constants";
 
 import EditorEventComponent from "../components/editor";
 import EventComponent from "../components/event";
 import ListEventsComponent from "../components/list_events";
-import SortComponent from "../components/sort";
-import ListDaysComponent from "../components/list_days";
+import DayComponent from "../components/day";
 
 function showBtnHundler(eventComponent, editorComponent) {
   eventComponent.clickHandler(() => {
@@ -20,37 +18,43 @@ function hideBtnHundler(eventComponent, editorComponent) {
   });
 }
 
-function buildEvent(place, tripEvent) {
-  const eventComponent = new EventComponent(tripEvent);
-  const editorComponent = new EditorEventComponent(tripEvent);
+function renderEvent(eventsList, eventsOfDay) {
+  eventsOfDay.map((currentEvent) => {
+    const eventComponent = new EventComponent(currentEvent);
+    const eventEditorComponent = new EditorEventComponent(currentEvent);
 
-  showBtnHundler(eventComponent, editorComponent);
-  hideBtnHundler(eventComponent, editorComponent);
+    showBtnHundler(eventComponent, eventEditorComponent);
+    hideBtnHundler(eventComponent, eventEditorComponent);
 
-  render(place, eventComponent);
+    render(eventsList, eventComponent);
+  });
+}
+
+function renderListEvents(container, indexOfDay, currentArray) {
+  const eventsListComponent = new ListEventsComponent(currentArray[indexOfDay]);
+  currentArray[indexOfDay].map(() => render(container, eventsListComponent));
+
+  renderEvent(eventsListComponent.getElement(), currentArray[indexOfDay]);
+}
+
+function renderDays(listDays, day, indexOfDay, currentArray) {
+  const newDayComponent = new DayComponent(day);
+  render(listDays, newDayComponent);
+
+  renderListEvents(newDayComponent.getElement(), indexOfDay, currentArray);
 }
 
 export default class TripController {
   constructor(container) {
     this._container = container;
-    this._sortComponent = new SortComponent();
-    this._listDaysComponent = new ListDaysComponent();
-    this._listEventsComponent = new ListEventsComponent();
   }
 
-  render(waypointsSet) {
-    const mainContentConainer = document.querySelector(`.page-body__page-main`).querySelector(`.page-body__container`);
-    render(mainContentConainer, this._container, Position.afterbegin);
-
-    const tripEvents = document.querySelector(`.trip-events`);
-    render(tripEvents, this._sortComponent);
-    render(tripEvents, this._listDaysComponent);
-
-    const tripDaysList = document.querySelectorAll(`.trip-days__item`);
-    render(tripDaysList[0], this._listEventsComponent);
-
-    const tripEventsList = document.querySelector(`.trip-events__list`);
-
-    waypointsSet.forEach((tripEvent) => buildEvent(tripEventsList, tripEvent));
+  render(filledSetDays) {
+    const listDays = this._container.getElement();
+    filledSetDays.map((day, indexOfDay, currentArray) => {
+      if (currentArray[indexOfDay].length > 0) {
+        renderDays(listDays, day, indexOfDay, currentArray);
+      }
+    });
   }
 }

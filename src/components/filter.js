@@ -20,7 +20,7 @@ const getTripFilters = () => {
   );
 };
 
-export default class Filter extends AbstractComponent {
+export default class HeaderFilterComponent extends AbstractComponent {
   getTemplate() {
     return getTripFilters();
   }

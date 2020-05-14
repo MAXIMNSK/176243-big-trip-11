@@ -57,7 +57,7 @@ export const getDay = (waypoint) => {
   );
 };
 
-export default class Event extends AbstractComponent {
+export default class EventComponent extends AbstractComponent {
   constructor(data) {
     super();
     this._data = data;

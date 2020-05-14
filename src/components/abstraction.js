@@ -14,14 +14,14 @@ export default class AbstractComponent {
   }
 
   getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
+    if (!this._element) {
+      this._element = transform(this.getTemplate());
     }
 
-    return this._markupElement;
+    return this._element;
   }
 
   resetVariable() {
-    this._markupElement = null;
+    this._element = null;
   }
 }
