@@ -1,14 +1,9 @@
 import {Position} from "../consts/constants";
 
-const render = (container, component, place = Position.beforeend) => {
-  const dictionary = {
-    "beforebegin": () => container.before(component.getElement()),
-    "afterbegin": () => container.prepend(component.getElement()),
-    "beforeend": () => container.append(component.getElement()),
-    "afterend": () => container.after(component.getElement()),
-  };
-
-  dictionary[place]();
+const insertMarkup = {
+  "afterbegin": (container, component) => container.prepend(component.getElement()),
+  "beforeend": (container, component) => container.append(component.getElement()),
+  "afterend": (container, component) => container.after(component.getElement()),
 };
 
-export {render};
+export const render = (container, component, place = Position.beforeend) => insertMarkup[place](container, component);
