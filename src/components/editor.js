@@ -3,7 +3,7 @@ import {getActivityTypes} from "./editor/type_activity";
 import {getDestinationPoints} from "./editor/destination";
 import {getOffers} from "./editor/offers";
 import {getFormedDate, getFormedTime} from "./editor/formed_data";
-import {transform} from "../utility/transformation";
+import AbstractComponent from "./abstraction";
 
 export const getEditor = (waypoint) => {
   const {
@@ -104,9 +104,9 @@ export const getEditor = (waypoint) => {
   );
 };
 
-export default class EditorEvent {
+export default class EventEditorComponent extends AbstractComponent {
   constructor(data) {
-    this._markupElement = null;
+    super();
     this._data = data;
   }
 
@@ -114,15 +114,7 @@ export default class EditorEvent {
     return getEditor(this._data);
   }
 
-  getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
-    }
-
-    return this._markupElement;
-  }
-
-  resetVariable() {
-    this._markupElement = null;
+  clickHandler(handler) {
+    this.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, handler);
   }
 }

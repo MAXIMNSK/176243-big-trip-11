@@ -1,5 +1,5 @@
 import {getFormedDuration, getFormedDate, getFormedTime} from "./event/formed_data";
-import {transform} from "../utility/transformation";
+import AbstractComponent from "./abstraction";
 
 export const getDay = (waypoint) => {
   const {
@@ -57,9 +57,9 @@ export const getDay = (waypoint) => {
   );
 };
 
-export default class Event {
+export default class EventComponent extends AbstractComponent {
   constructor(data) {
-    this._markupElement = null;
+    super();
     this._data = data;
   }
 
@@ -67,15 +67,7 @@ export default class Event {
     return getDay(this._data);
   }
 
-  getElement() {
-    if (this._markupElement !== true) {
-      this._markupElement = transform(this.getTemplate());
-    }
-
-    return this._markupElement;
-  }
-
-  resetVariable() {
-    this._markupElement = null;
+  clickHandler(handler) {
+    this.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, handler);
   }
 }

@@ -2,9 +2,10 @@ import {getWaypointType} from "./type_waypoint";
 import {getRandomDest} from "./destination_generator";
 import {getInfo} from "./info";
 import {randomStartDate, randomEndDate} from "./date";
-import {MAX_PRICE, RENT_PRICE} from "../consts/constants";
+import {UNIVERSAL_NUMBER} from "../consts/constants";
 import {getDurationTime} from "./duration";
 import {getPhoto} from "./photo_generator";
+import {getRandomNumber} from "../utility/random_number";
 
 const getWaypoint = () => {
   return {
@@ -26,8 +27,8 @@ const getWaypoint = () => {
     endDay: randomEndDate.day,
     endHour: randomEndDate.hour,
     endMin: randomEndDate.min,
-    price: Math.floor(Math.random() * MAX_PRICE),
-    rent: Math.floor(Math.random() * RENT_PRICE),
+    price: getRandomNumber(UNIVERSAL_NUMBER),
+    rent: getRandomNumber(UNIVERSAL_NUMBER),
     duration: getDurationTime(),
   };
 };

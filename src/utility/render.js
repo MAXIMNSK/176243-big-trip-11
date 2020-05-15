@@ -1,18 +1,9 @@
 import {Position} from "../consts/constants";
 
-export const render = (container, element, place = Position.beforeend) => {
-  switch (place) {
-    case Position.beforebegin:
-      container.before(element);
-      break;
-    case Position.afterbegin:
-      container.prepend(element);
-      break;
-    case Position.beforeend:
-      container.append(element);
-      break;
-    case Position.afterend:
-      container.after(element);
-      break;
-  }
+const insertMarkup = {
+  "afterbegin": (container, component) => container.prepend(component.getElement()),
+  "beforeend": (container, component) => container.append(component.getElement()),
+  "afterend": (container, component) => container.after(component.getElement()),
 };
+
+export const render = (container, component, place = Position.beforeend) => insertMarkup[place](container, component);
