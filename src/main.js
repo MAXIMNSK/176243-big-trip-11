@@ -7,19 +7,18 @@ import ListDaysComponent from "./components/list_days";
 
 import {Position, COUNT_WAYPOINTS, COUNT_DAYS} from "./consts/constants";
 import {render} from "./utility/render";
+import {getRandomNumber} from "./utility/random_number";
 import {getWaypointsSet} from "./mock/mock";
 
 const waypointsSet = getWaypointsSet(COUNT_WAYPOINTS);
 
-function fillDays() {
-  return new Array(Math.floor(Math.random() * waypointsSet.length)).fill(``).map(() => waypointsSet[Math.floor(Math.random() * waypointsSet.length)]);
-}
-
-function getDays() {
-  return new Array(COUNT_DAYS).fill(``).map(() => fillDays());
-}
-
-const filledDaysSet = getDays();
+const daysSet = () => {
+  return new Array(COUNT_DAYS).fill(``).map(() => {
+    return new Array(getRandomNumber(waypointsSet.length)).fill(``).map(() => {
+      return waypointsSet[getRandomNumber(waypointsSet.length)];
+    });
+  });
+};
 
 const tripBlock = document.querySelector(`.trip-main`);
 const tripControls = document.querySelector(`.trip-main__trip-controls`);
@@ -40,7 +39,7 @@ const init = () => {
   render(tripEvents, sortComponent);
   render(tripEvents, listDaysComponent);
 
-  controller.render(filledDaysSet);
+  controller.render(daysSet());
 };
 
 init();

@@ -49,9 +49,10 @@ export default class TripController {
     this._container = container;
   }
 
-  render(filledSetDays) {
+  render(daysSet) {
     const listDays = this._container.getElement();
-    filledSetDays.map((day, indexOfDay, currentArray) => {
+
+    daysSet.map((day, indexOfDay, currentArray) => {
       if (currentArray[indexOfDay].length > 0) {
         renderDays(listDays, day, indexOfDay, currentArray);
       }

@@ -5,6 +5,7 @@ import {randomStartDate, randomEndDate} from "./date";
 import {UNIVERSAL_NUMBER} from "../consts/constants";
 import {getDurationTime} from "./duration";
 import {getPhoto} from "./photo_generator";
+import {getRandomNumber} from "../utility/random_number";
 
 const getWaypoint = () => {
   return {
@@ -26,8 +27,8 @@ const getWaypoint = () => {
     endDay: randomEndDate.day,
     endHour: randomEndDate.hour,
     endMin: randomEndDate.min,
-    price: Math.floor(Math.random() * UNIVERSAL_NUMBER),
-    rent: Math.floor(Math.random() * UNIVERSAL_NUMBER),
+    price: getRandomNumber(UNIVERSAL_NUMBER),
+    rent: getRandomNumber(UNIVERSAL_NUMBER),
     duration: getDurationTime(),
   };
 };
